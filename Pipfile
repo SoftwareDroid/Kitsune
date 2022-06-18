@@ -4,10 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-selenium-wire = "*"
 webdriver-manager = "*"
 weasyprint = "*"
 jinja2 = "*"
+googletrans = "*"
+deep-translator = "*"
+selenium = "*"
 
 [dev-packages]
 

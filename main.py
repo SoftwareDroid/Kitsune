@@ -8,7 +8,7 @@ from Source.subtitle_reader import read_subs
 def main(name):
     file = "/home/patrick/Desktop/Learning/Little witch/Little Witch Academia (01-25) (Webrip)/Little Witch Academia.S01E01.CC.ja.srt"
     subs = read_subs(file)
-    subs = subs[:20]
+    subs = subs[:5]
     print(subs)
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.

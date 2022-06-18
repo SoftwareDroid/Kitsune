@@ -3,9 +3,6 @@ from typing import Sequence
 import linking as linking
 
 
-
-
-
 class MangaHelperEntry:
     def __init__(self, jap: str, pronunciation: str, description: str, linking: str):
         self._jap = jap
@@ -24,6 +21,7 @@ class MangaHelperEntry:
 
     def description(self) -> str:
         return self._description
+
 
 class JapWord:
     def __init__(self, jap: str, hiragana: str, description: str, wtype: str):
@@ -45,10 +43,14 @@ class JapWord:
         return self._wtype
 
     def get_practice_format(self) -> str:
-        return f"{self._jap} ({self._hiragana})"
+        if self._jap != self._hiragana:
+            return f"{self._jap} ({self._hiragana})"
+        else:
+            return self._jap
 
     def get_help_format(self, linking: str) -> MangaHelperEntry:
-        return MangaHelperEntry(self._jap,self._hiragana,self._description,linking)
+        return MangaHelperEntry(self._jap, self._hiragana, self._description, linking)
+
 
 class MangaHelperList:
     def __init__(self, title: str, entries: Sequence[MangaHelperEntry]):

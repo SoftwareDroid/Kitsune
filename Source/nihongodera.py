@@ -3,7 +3,7 @@ import json
 from typing import Sequence
 
 from selenium.webdriver.chrome.options import Options
-from seleniumwire import webdriver  # Import from seleniumwire
+# from seleniumwire import webdriver  # Import from seleniumwire
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -60,7 +60,10 @@ class Nihongodera:
             # ret["type"] = content[p1 + len(tag):p2]
             # ret["desc"] = content[p2 + len(tag):]
             word = JapWord(element.text, content[0:p1], content[p2 + len(tag):], content[p1 + len(tag):p2])
-            results_of_text.append(word)
+            # print(word.jap()," d: ", len(word.description())," hira ",len(word.hiragana()), " tt ",word.wtype() )
+            # ignore lookup fails
+            if len(word.description()) > 0:
+                results_of_text.append(word)
         self._driver.implicitly_wait(2)
         # print(results_of_text)
         return results_of_text
