@@ -1,10 +1,13 @@
 import time
 import json
+from typing import Sequence
+
 from selenium.webdriver.chrome.options import Options
 from seleniumwire import webdriver  # Import from seleniumwire
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from Source.formatter.manga_helper_list import JapWord
 
 
 # この子は今日もムラムラしています
@@ -24,7 +27,7 @@ class Nihongodera:
     def __del__(self):
         self._driver.quit()
 
-    def analyse(self, text: str):
+    def analyse(self, text: str) -> Sequence[JapWord]:
         self._driver.get(f"https://nihongodera.com/tools/text-analyzer")
         assert len(self._driver.page_source) != 0, "Page get failed. Decoding Error?"
         # self._input_field = self._driver.find_element_by_xpath("//textarea[contains(@class, 'lmt__source_textarea')]")
@@ -45,16 +48,19 @@ class Nihongodera:
         div_results = self._driver.find_elements_by_xpath("//div[contains(@class, 'tool__results')]/a")
         self._driver.implicitly_wait(2)
         for element in div_results:
-            ret = {}
             content = element.get_attribute("data-tooltip")
             tag = "<br>"
             p1 = content.find(tag)
             p2 = content.find(tag, p1 + len(tag))
-            ret["jap"] = element.text
-            ret["hira"] = content[0:p1]
-            ret["type"] = content[p1 + len(tag):p2]
-            ret["desc"] = content[p2 + len(tag):]
-            results_of_text.append(ret)
+
+            # def __init__(self, jap: str, hiragana: str, description: str, wtype: str):
+            # JapWord(element.text,content[0:p1],content[p2 + len(tag):],content[p1 + len(tag):p2])
+            # ret["jap"] = element.text
+            # ret["hira"] = content[0:p1]
+            # ret["type"] = content[p1 + len(tag):p2]
+            # ret["desc"] = content[p2 + len(tag):]
+            word = JapWord(element.text, content[0:p1], content[p2 + len(tag):], content[p1 + len(tag):p2])
+            results_of_text.append(word)
         self._driver.implicitly_wait(2)
         # print(results_of_text)
         return results_of_text

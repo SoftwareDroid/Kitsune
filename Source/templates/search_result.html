@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=0.5, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Recipe 1</title>
+</head>
+<body class="container">
+    <h2>{{ query.name()}}</h2>
+
+    {% for group in results %}
+    <h5>{{ group[0] }}</h5>
+          <table>
+            <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Preparation Time</th>
+                  <th>Cooking Time</th>
+                  <th>Vegetarian</th>
+                  <th>Cuisine</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                {% for recipe in group[1] %}
+                <tr>
+                    <td>
+                        {% if recipe[1] is not none %}
+                            <a href='{{ recipe[1] }}'>{{ recipe[0].title() }}</a>
+                        {% else %}
+                            <span>{{ recipe[0].title() }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ recipe[0].preptime() }}</td>
+                     <td>{{ recipe[0].cooktime() }}</td>
+                    <td>{{ recipe[0].has_tag("Vegetarian") }}</td>
+                    <td>{{ recipe[0].cuisine() }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    {% endfor %}
+        <small>This file is automatically created with the <i>Gourmet Recipe Manager Exporter v1<i> (https://github.com/SoftwareDroid/Gourmet-Recipe-Manager-PDF-Exporter).</small>
+
+</body>

@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 selenium-wire = "*"
 webdriver-manager = "*"
+weasyprint = "*"
+jinja2 = "*"
 
 [dev-packages]
 

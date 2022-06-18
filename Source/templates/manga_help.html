@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Recipe 1</title>
+</head>
+<div class="container">
+
+    {% for entry in doc.get_entries() %}
+    <div class="row">
+        <div class="col s2">
+            <span class="blue-text text-darken-2">{{ entry.jap() }}</span>
+        </div>
+        <div class="col s3">
+            <span>({{ entry.pronunciation() }})</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col 2 s5 offset-1">
+            {{ entry.description() }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col 2 s5 offset-1">
+            {{ entry.linking() }}
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+        <footer class="page-footer">
+
+            <div class="container">
+            <span class="grey-text text-lighten-4 center-align">{{ doc.title() }}</span>
+            </div>
+        </footer>
+</body>

@@ -1,0 +1,131 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Recipe 1</title>
+</head>
+<body class="container">
+<header class="container center-align">
+    <h5>{{ recipe.title() }}</h5>
+    <hr/>
+</header>
+<!--- Image NOTE Optional d.h ein expotierieren ist auch ohne Image möglich--->
+<p style="text-align:center;">
+    {% if export_images %}
+    <img src="data:image/jpeg;base64,{{ recipe.base64_image()}}" style="height:250px">
+    {% else %}
+    <span>Images not exported</span>
+    {% endif %}
+</p>
+
+
+<!-- <a href='file:///storage/ext_sd/test_pdf/doro_wat.pdf'>Link C</a>-->
+<!--- Meta data -->
+<div class="row">
+    <div class="col s6">
+        <div class="row">
+            <div class="col s5"><b>Yields</b></div>
+            <div class="col s7">{{ recipe.yields() }} {{recipe.yields_unit()}}</div>
+        </div>
+        <!--Ratings-->
+        <div class="row">
+            <div class="col s3"><b>Rating</b></div>
+            <div class="col s9 push-s2">
+                <!--Return eine Folge aus strings welche die icons beshcriebt symbolize_rating["star","star","star_half",....]-->
+                <span class="orange-text">
+                    {% for icon in recipe.symbolized_rating() %}
+                        <i class="material-icons small">{{ icon }}</i>
+                    {% endfor %}
+					</span>
+            </div>
+        </div>
+        <!--End of Ratings-->
+        <div class="row">
+            <div class="col s5"><b>Preparation Time</b></div>
+            <div class="col s7">{{ recipe.preptime() }}</div>
+        </div>
+        <div class="row">
+            <div class="col s5"><b>Cooking Time</b></div>
+            <div class="col s7">{{ recipe.cooktime() }}</div>
+        </div>
+        <!-- End of Timings -->
+        <div class="row">
+            <div class="col s5"><b>Cuisine</b></div>
+            <div class="col s7">{{ recipe.cuisine() }}</div>
+        </div>
+        <!-- Source is something like Author -->
+
+
+    </div>
+
+
+    <div class="col s5 push-s1">
+        <div class="row">
+            <div class="col s4"><b>Last Modified</b></div>
+            <div class="col s8">{{ recipe.get_last_modified_date() }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col s4"><b>Author</b></div>
+            <div class="col s8">{{ recipe.source() }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col s4"><b>Based on</b></div>
+            <div class="col s8"><a href="{{ recipe.link() }}">Website</a></div>
+        </div>
+        <div class="row">
+            <div class="col s4"><b>Generated with</b></div>
+            <div class="col s8"><a href="https://github.com/SoftwareDroid/Gourmet-Recipe-Manager-PDF-Exporter">Gourmet
+                Recipe Exporter</a></div>
+        </div>
+    </div>
+
+
+    <!--- Recipe Keywords -->
+    <div class="col s12">
+        <div class="row">
+            <div class="col s2"><b>Keywords</b></div>
+            <div class="col s8">
+                {% for tag in recipe.get_tags() %}
+                <a class="waves-effect waves-light btn-small {{ tag.color() }}">{{ tag.display_name() }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!----------------------------------------------------------------------------------------------------Meta Info-->
+
+
+<div class="divider"></div>
+<div>
+    <!-- Show Bullet Points https://materializecss.com/helpers.html#browser-default -->
+    <div class="card">
+        <h5>Ingredients</h5>
+        {% for group in recipe.get_grouped_ingredients() %}
+
+
+        {% if group.name() != None %}
+        <b>{{ group.name() }}</b>
+        {% endif %}
+        <ul class="browser-default">
+            {% for ingredient in group.ingredients() %}
+            <li>{{ ingredient.amount() if ingredient.amount() != None }} {{ ingredient.unit() if ingredient.unit() !=
+                None }} {{ ingredient.item() }} {{ "(Optional)" if ingredient.optional() != 0 }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
+    <h5>Directions</h5>
+    {{ recipe.html_instruction() }}
+</div>
+
+</body>
