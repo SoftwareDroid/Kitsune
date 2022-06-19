@@ -4,7 +4,7 @@ version = 1.0
 [input]
 #filename = "/home/patrick/Desktop/Learning/Little witch/Little Witch Academia (01-25) (Webrip)/Little Witch Academia.S01E01.CC.ja.srt"
 filename = "/home/patrick/Desktop/Learning/My Neighbor Totoro Movie.srt"
-lines = [0,60]
+lines = [6,9]
 
 [lookup]
 threads = 3
@@ -13,5 +13,5 @@ threads = 3
 mode = "txt"
 language = "en"
 folder = "out"
-practice_sheet = "practice_sheet"
-word_sheet = "word_sheet"
+practice_sheet = "practice_sheet2"
+word_sheet = "word_sheet2"
