@@ -86,5 +86,5 @@ neighbor (neighbour), next to (esp. living next door to)
 ---
 ## Contact <a name="contact"></a>
 Created by Patrick Mispelhorn (patrick.mispelhorn@web.de) - feel free to contact me!
-License:
+## License
 GNU AFFERO GENERAL PUBLIC LICENSE
