@@ -8,6 +8,16 @@ As well as in a separate file a list by looked up words in the subtitles in a di
 This list also contains references to the first file.
 
 The settings can be in the config.toml.
+ - input
+   - filename = the input file
+   - lines = the processed sentence numbers
+ - output
+   - language = the output language (translations)
+   - folder = the output folder
+   - mode = only txt is supported
+   - practice_sheet = file A
+   - word_sheet = file B
+
 
 Source for downloading Japanese anime subtitles:
 - http://kitsunekko.net/
@@ -34,36 +44,45 @@ Sentences
 ### File looked up words
 ---
 Words:
-となり
-   neighbor (neighbour), next to (esp. living next door to)
-   [0]
-の
+となり <br>
+neighbor (neighbour), next to (esp. living next door to)
+<br>[0]<br>
+
+の<br>
    indicates possessive, nominalizes verbs and adjectives, substitutes for "ga" in subordinate phrases, (at sentence-end, falling tone) indicates a confident conclusion, (at sentence-end) indicates emotional emphasis, (at sentence-end, rising tone) indicates question
-   [0, 1, 1]
-ととろ
-   roaring
-   [0]
-小学生 (しょうがくせい)
+   <br>[0, 1, 1]<br>
+
+ととろ<br>
+   roaring<br>
+   [0]<br>
+
+小学生 (しょうがくせい)<br>
    elementary school student, primary school student, grade school student
-   [1]
-さつき
-   fifth month of the lunar calendar, satsuki azalea (Rhododendron indicum)
-   [1, 2]
-と
-   if, when, and, with, particle used for quoting (with speech, thoughts, etc.), quoting particle, promoted pawn, indicates question (sentence end)
-   [1]
-妹 (いもうと)
-   younger sister
-   [1]
-めい nein
-   command, decree, life, destiny
-   [1]
-大きい (おおきい)
-   big, large, great, loud
-   [2]
-ね
-   indicates emphasis, agreement, request for confirmation, etc., is it so, hey, come on, listen, not
-   [2]
+   [1]<br>
+
+さつき<br>
+   fifth month of the lunar calendar, satsuki azalea (Rhododendron indicum)<br>
+   [1, 2]<br>
+
+と<br>
+   if, when, and, with, particle used for quoting (with speech, thoughts, etc.), quoting particle, promoted pawn, indicates question (sentence end)<br>
+   [1]<br>
+
+妹 (いもうと)<br>
+   younger sister<br>
+   [1]<br>
+めい nein<br>
+
+   command, decree, life, destiny<br>
+   [1]<br><br>
+大きい (おおきい)<br>
+
+   big, large, great, loud<br>
+   [2]<br>
+
+ね<br>
+   indicates emphasis, agreement, request for confirmation, etc., is it so, hey, come on, listen, not<br>
+   [2]<br>
 
 ---
 

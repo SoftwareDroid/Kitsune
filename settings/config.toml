@@ -6,8 +6,6 @@ version = 1.0
 filename = "/home/patrick/Desktop/Learning/My Neighbor Totoro Movie.srt"
 lines = [6,9]
 
-[lookup]
-threads = 3
 
 [output]
 mode = "txt"
