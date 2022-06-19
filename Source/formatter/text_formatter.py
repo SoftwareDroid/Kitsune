@@ -1,17 +1,22 @@
 from typing import Sequence, Tuple
-
+import datetime
 from Source.formatter.manga_helper_list import JapWord
 from deep_translator import GoogleTranslator
-# translated = Go/ogleTranslator(source='auto', target='de').translate("keep it up, you are awesome")  # output -> Weiter so, du bist großartig
 
-def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]]):
+
+def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], settings):
     linking = {}
     # practice sheet
-    practice_sheet = "Practice Sheet\n\n"
+    title1 = settings["output"]["practice_sheet"]
+    version = settings["main"]["version"]
+    now = datetime.datetime.now()
+    input_file = settings["input"]["filename"]
+    timestamp = now.strftime("%d.%m.%Y %H:%M:%S")
+    practice_sheet = f"{title1}\nInput: {input_file}\nKitsune Version: {version}\nTimestamp: {timestamp}\nSentences\n\n"
     counter = 0
     for sentence in sentences:
         copy: str = sentence[0]
-        translated: str = GoogleTranslator(source="ja",target="en").translate(copy)
+        translated: str = GoogleTranslator(source="ja", target=settings["output"]["language"]).translate(copy)
         for entry in sentence[1]:
             entry: JapWord
             if entry.jap() != entry.hiragana():
@@ -22,8 +27,9 @@ def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]]):
             linking[entry.jap()][0].append(counter)
         practice_sheet += f"{counter}. {copy}\n{translated}\n\n"
         counter += 1
-        # create cheat sheet
-    cheat_sheet = "cheat Sheet\n\n"
+    # create cheat sheet
+    title2 = settings["output"]["word_sheet"]
+    cheat_sheet = f"{title2}\nInput: {input_file} \nKitsune Version: {version}\nTimestamp: {timestamp}\n\nWords:\n"
 
     for link in linking:
         entry: JapWord = linking[link][1]

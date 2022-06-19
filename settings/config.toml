@@ -3,7 +3,7 @@ version = 1.0
 
 [input]
 filename = "/home/patrick/Desktop/Learning/Little witch/Little Witch Academia (01-25) (Webrip)/Little Witch Academia.S01E01.CC.ja.srt"
-lines = [0,20]
+lines = [0,5]
 
 [output]
 mode = "txt"
