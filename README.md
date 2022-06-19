@@ -1,4 +1,5 @@
-Kitsune is a program designed to help with learning Japanese.
+# Kitsune
+*Kitsune* is a program designed to help with learning Japanese.
 It converts a subtitle file (srt) for an anime into a format suitable for reading and learning.
 In doing so, furigana are added in parentheses (and no kanji to learn).
 Spaces are added between words to make it easier to recognize words.
@@ -14,6 +15,9 @@ Source for downloading Japanese anime subtitles:
 Used website to create furigana, spaces and look up the individual words:
 - https://nihongodera.com/tools/text-analyzer
 
+## Example Output
+
+### File Sentences
 ---
 Sentences
 
@@ -27,7 +31,7 @@ Sentences
 (Satsuki) It's big.
 
 ---
-
+### File looked up words
 ---
 Words:
 となり
@@ -51,7 +55,7 @@ Words:
 妹 (いもうと)
    younger sister
    [1]
-めい
+めい nein
    command, decree, life, destiny
    [1]
 大きい (おおきい)
