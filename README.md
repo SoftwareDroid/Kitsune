@@ -15,8 +15,8 @@ The settings can be in the config.toml.
    - language = the output language (translations)
    - folder = the output folder
    - mode = only txt is supported
-   - practice_sheet = file A
-   - word_sheet = file B
+   - practice_sheet = output file 1
+   - word_sheet = output file 2
 
 
 Source for downloading Japanese anime subtitles:
@@ -42,7 +42,6 @@ Sentences
 
 ---
 ### File looked up words
----
 Words:
 となり <br>
 neighbor (neighbour), next to (esp. living next door to)
@@ -85,6 +84,7 @@ neighbor (neighbour), next to (esp. living next door to)
    [2]<br>
 
 ---
-
+## Contact <a name="contact"></a>
+Created by Patrick Mispelhorn (patrick.mispelhorn@web.de) - feel free to contact me!
 License:
 GNU AFFERO GENERAL PUBLIC LICENSE
