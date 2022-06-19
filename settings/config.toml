@@ -2,8 +2,12 @@
 version = 1.0
 
 [input]
-filename = "/home/patrick/Desktop/Learning/Little witch/Little Witch Academia (01-25) (Webrip)/Little Witch Academia.S01E01.CC.ja.srt"
-lines = [0,5]
+#filename = "/home/patrick/Desktop/Learning/Little witch/Little Witch Academia (01-25) (Webrip)/Little Witch Academia.S01E01.CC.ja.srt"
+filename = "/home/patrick/Desktop/Learning/My Neighbor Totoro Movie.srt"
+lines = [0,60]
+
+[lookup]
+threads = 3
 
 [output]
 mode = "txt"

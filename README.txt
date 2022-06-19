@@ -1,6 +1,18 @@
-Kitsune  ist ein Programm,  welches beim Japanisch lernen helfen soll.
-Es bietet dabei eine Suchfunktion,  welche es erlaubt zeitsparend Beispielsätze zu japanischen   Vokabeln zu finden. Diese werden in reinem Hiragana angezeigt. Verschiedene Tastenkürzel erlauben es,  die Beispielsätze in andere Programme oder der Zwischenablage einzufügen.
+Kitsune is a program designed to help with learning Japanese.
+It converts a subtitle file (srt) for an anime into a format suitable for reading and learning.
+In doing so, furigana are added in parentheses (and no kanji to learn).
+Spaces are added between words to make it easier to recognize words.
+Added an automatic translation into e.g. English.
+As well as in a separate file a list by looked up words in the subtitles in a dictionary.
+This list also contains references to the first file.
 
-Kitsune legt großen Wert, darauf diesen Prozess mit möglichst wenig Tastenkürzel durchzuführen (ohne Verwendung der Maus).  Der Grund hierfür ist,  dass das Finden von Beispielen für Vokabeln möglichst schnell gehen soll.
+The settings can be in the config.toml.
 
+Source for downloading Japanese anime subtitles:
+- http://kitsunekko.net/
 
+Used website to create furigana, spaces and look up the individual words:
+- https://nihongodera.com/tools/text-analyzer
+
+License:
+GNU AFFERO GENERAL PUBLIC LICENSE
