@@ -10,6 +10,7 @@ jinja2 = "*"
 googletrans = "*"
 deep-translator = "*"
 selenium = "*"
+toml = "*"
 
 [dev-packages]
 

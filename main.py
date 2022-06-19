@@ -1,18 +1,18 @@
 # This is a sample Python script.
+from typing import Sequence
 
+import toml
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 from Source.nihongodera import Nihongodera
 from Source.formatter.text_formatter import create_text_output
 from Source.subtitle_reader import read_subs
 def main(name):
-    file = "/home/patrick/Desktop/Learning/Little witch/Little Witch Academia (01-25) (Webrip)/Little Witch Academia.S01E01.CC.ja.srt"
-    subs = read_subs(file)
-    subs = subs[:5]
+    settings = toml.load("settings/config.toml")
+    print(settings)
+    subs = read_subs(settings["input"]["filename"])
+    subs: Sequence[str] = subs[settings["input"]["lines"][0]:settings["input"]["lines"][1]]
     print(subs)
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-    sentences = ["この子は今日もムラムラしています","たまねぎを食べる"]
     sentences = subs
     tool = Nihongodera()
     analysed = []
@@ -22,12 +22,15 @@ def main(name):
         print(f"lookup finished: {sentence}")
         analysed.append((sentence,results))
     practice_sheet,cheat_sheet = create_text_output(analysed)
-
-    text_file = open("out/practice_sheet.txt", "w")
+    folder = settings["output"]["folder"]
+    mode = settings["output"]["mode"]
+    file1 = settings["output"]["practice_sheet"]
+    file2 = settings["output"]["word_sheet"]
+    text_file = open(f"{folder}/{file1}.{mode}", "w")
     n = text_file.write(practice_sheet)
     text_file.close()
 
-    text_file = open("out/cheat_sheet.txt", "w")
+    text_file = open(f"{folder}/{file2}.{mode}", "w")
     n = text_file.write(cheat_sheet)
     text_file.close()
 

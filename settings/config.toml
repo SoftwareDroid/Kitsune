@@ -1,0 +1,13 @@
+[main]
+version = 1.0
+
+[input]
+filename = "/home/patrick/Desktop/Learning/Little witch/Little Witch Academia (01-25) (Webrip)/Little Witch Academia.S01E01.CC.ja.srt"
+lines = [0,20]
+
+[output]
+mode = "txt"
+language = "en"
+folder = "out"
+practice_sheet = "practice_sheet"
+word_sheet = "word_sheet"
