@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from Source.formatter.manga_helper_list import JapWord
+from Source.core.jap_word import JapWord
 
 
 # この子は今日もムラムラしています
@@ -53,14 +53,14 @@ class Nihongodera:
             p1 = content.find(tag)
             p2 = content.find(tag, p1 + len(tag))
 
-            # def __init__(self, jap: str, hiragana: str, description: str, wtype: str):
+            # def __init__(self, jap: str, hiragana: str, description: str, word_type: str):
             # JapWord(element.text,content[0:p1],content[p2 + len(tag):],content[p1 + len(tag):p2])
             # ret["jap"] = element.text
             # ret["hira"] = content[0:p1]
             # ret["type"] = content[p1 + len(tag):p2]
             # ret["desc"] = content[p2 + len(tag):]
             word = JapWord(element.text, content[0:p1], content[p2 + len(tag):], content[p1 + len(tag):p2])
-            # print(word.jap()," d: ", len(word.description())," hira ",len(word.hiragana()), " tt ",word.wtype() )
+            # print(word.jap()," d: ", len(word.description())," hira ",len(word.hiragana()), " tt ",word.word_type() )
             # ignore lookup fails
             if len(word.description()) > 0:
                 results_of_text.append(word)

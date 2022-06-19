@@ -1,6 +1,6 @@
 from enum import Enum
 
-def read_subs(file: str):
+def read_subs_srt_file(file: str):
     results = []
     file1 = open(file, 'r')
 

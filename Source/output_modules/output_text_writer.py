@@ -1,6 +1,6 @@
 from typing import Sequence, Tuple
 import datetime
-from Source.formatter.manga_helper_list import JapWord
+from Source.core.jap_word import JapWord
 from deep_translator import GoogleTranslator
 
 
