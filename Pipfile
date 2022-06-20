@@ -12,6 +12,7 @@ deep-translator = "*"
 selenium = "*"
 toml = "*"
 pysubs2 = "*"
+argparse = "*"
 
 [dev-packages]
 

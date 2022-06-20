@@ -21,20 +21,20 @@ from Source.core.jap_word import JapWord
 from deep_translator import GoogleTranslator
 
 
-def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], settings):
+def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], args, link_counter):
     linking = {}
     # practice sheet
-    title1 = settings["output"]["practice_sheet"]
-    version = settings["main"]["version"]
+    title1 = "Practice Sheet"
+    version = 1.0
     now = datetime.datetime.now()
-    input_file = settings["input"]["filename"]
+    input_file = args.subtitles_file
     timestamp = now.strftime("%d.%m.%Y %H:%M:%S")
-    lines = settings["input"]["lines"]
+    lines = args.max_lines
     practice_sheet = f"{title1}\nInput: {input_file}\nLines: {lines}\nKitsune Version: {version}\nTimestamp: {timestamp}\nSentences\n\n"
-    counter = 0
+    counter = link_counter
     for sentence in sentences:
         copy: str = sentence[0]
-        translated: str = GoogleTranslator(source="ja", target=settings["output"]["language"]).translate(copy)
+        translated: str = GoogleTranslator(source="ja", target=args.out_lang).translate(copy)
         for entry in sentence[1]:
             entry: JapWord
             if entry.jap() != entry.hiragana():
@@ -46,7 +46,7 @@ def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], setti
         practice_sheet += f"{counter}. {copy}\n{translated}\n\n"
         counter += 1
     # create cheat sheet
-    title2 = settings["output"]["word_sheet"]
+    title2 = "Helper Sheet"
     cheat_sheet = f"{title2}\nInput: {input_file}\nLines: {lines} \nKitsune Version: {version}\nTimestamp: {timestamp}\n\nWords:\n"
 
     for link in linking:
