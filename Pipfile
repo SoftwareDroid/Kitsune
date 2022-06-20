@@ -11,6 +11,7 @@ googletrans = "*"
 deep-translator = "*"
 selenium = "*"
 toml = "*"
+pysubs2 = "*"
 
 [dev-packages]
 

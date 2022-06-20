@@ -20,7 +20,7 @@ import toml
 from Source.lookup_modules.nihongodera import Nihongodera
 from Source.core.jap_word import JapWord
 from Source.output_modules.output_text_writer import create_text_output
-from Source.input_modules.subtitle_reader import read_subs_srt_file
+from Source.input_modules.subtitle_reader import read_subs_srt_file,read_subs_file
 
 
 
@@ -28,7 +28,9 @@ from Source.input_modules.subtitle_reader import read_subs_srt_file
 def main():
     settings = toml.load("settings/config.toml")
     # print(settings)
-    subs = read_subs_srt_file(settings["input"]["filename"])
+    # subs = read_subs_srt_file(settings["input"]["filename"])
+    subs = read_subs_file(settings["input"]["filename"])
+
     subs: Sequence[str] = subs[settings["input"]["lines"][0]:settings["input"]["lines"][1]]
     # print(subs)
     sentences = subs
