@@ -42,6 +42,7 @@ import linking as linking
 
 class JapWord:
     def __init__(self, jap: str, hiragana: str, description: str, wtype: str):
+        self.skip = False
         self._jap = jap
         self._hiragana = hiragana
         self._description = description

@@ -26,7 +26,6 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from Source.core.jap_word import JapWord
 
-
 # この子は今日もムラムラしています
 from Source.memorywords import MemoryWords
 
@@ -85,9 +84,10 @@ class Nihongodera:
             # ignore lookup fails
             if len(word.description()) > 0:
                 if memory.skip_word(word.jap()):
-                    continue
+                    word.skip = True
                 else:
-                    short_text  =word.description().replace("\n","")
+                    short_text = word.description().replace("\n", "")
+                    memory.learn_word(f"# {word.hiragana()}")
                     memory.learn_word(f"# {short_text}")
                     memory.learn_word(word.jap())
                 results_of_text.append(word)

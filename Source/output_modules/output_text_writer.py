@@ -57,6 +57,9 @@ def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], args,
     for link in linking:
         entry: JapWord = linking[link][1]
         references = linking[link][0]
+        # skip words
+        if entry.skip:
+            continue
 
         if entry.jap() != entry.hiragana():
             cheat_sheet += f"{entry.jap()} ({entry.hiragana()}) \n{entry.description()} \n{references} \n"
