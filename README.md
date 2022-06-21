@@ -7,18 +7,6 @@ Added an automatic translation into e.g. English.
 As well as in a separate file a list by looked up words in the subtitles in a dictionary.
 This list also contains references to the first file.
 
-The settings can be in the config.toml.
- - input
-   - filename = the input file
-   - lines = the processed sentence numbers
- - output
-   - language = the output language (translations)
-   - folder = the output folder
-   - mode = only txt is supported
-   - practice_sheet = output file 1
-   - word_sheet = output file 2
-
-
 Source for downloading Japanese anime subtitles:
 - http://kitsunekko.net/
 

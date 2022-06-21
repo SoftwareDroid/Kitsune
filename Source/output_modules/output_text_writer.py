@@ -20,8 +20,10 @@ import datetime
 from Source.core.jap_word import JapWord
 from deep_translator import GoogleTranslator
 
+from Source.memorywords import MemoryWords
 
-def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], args, link_counter):
+
+def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], args, link_counter, memory: MemoryWords):
     linking = {}
     # practice sheet
     title1 = "Practice Sheet"
@@ -30,7 +32,10 @@ def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], args,
     input_file = args.subtitles_file
     timestamp = now.strftime("%d.%m.%Y %H:%M:%S")
     lines = args.max_lines
-    practice_sheet = f"{title1}\nInput: {input_file}\nLines: {lines}\nKitsune Version: {version}\nTimestamp: {timestamp}\nSentences\n\n"
+    start_line = args.start_by
+    end_line = args.end_by
+    header = f"Input: {input_file}\nMax Lines: {lines}\nStart Line:{start_line}\nEnd Line: {end_line}\nKitsune Version: {version}\nTimestamp: {timestamp}\n"
+    practice_sheet = f"{title1}\n{header}Sentences\n"
     counter = link_counter
     for sentence in sentences:
         copy: str = sentence[0]
@@ -47,15 +52,15 @@ def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], args,
         counter += 1
     # create cheat sheet
     title2 = "Helper Sheet"
-    cheat_sheet = f"{title2}\nInput: {input_file}\nLines: {lines} \nKitsune Version: {version}\nTimestamp: {timestamp}\n\nWords:\n"
+    cheat_sheet = f"{title2}\n{header}\nWords\n"
 
     for link in linking:
         entry: JapWord = linking[link][1]
         references = linking[link][0]
 
         if entry.jap() != entry.hiragana():
-            cheat_sheet += f"{entry.jap()} ({entry.hiragana()}) \n   {entry.description()} \n   {references} \n"
+            cheat_sheet += f"{entry.jap()} ({entry.hiragana()}) \n{entry.description()} \n{references} \n"
         else:
-            cheat_sheet += f"{entry.jap()}\n   {entry.description()} \n   {references} \n"
+            cheat_sheet += f"{entry.jap()}\n{entry.description()} \n{references} \n"
 
     return practice_sheet, cheat_sheet

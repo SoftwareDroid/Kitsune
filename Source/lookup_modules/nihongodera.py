@@ -28,6 +28,9 @@ from Source.core.jap_word import JapWord
 
 
 # この子は今日もムラムラしています
+from Source.memorywords import MemoryWords
+
+
 class Nihongodera:
     def __init__(self):
         options = Options()
@@ -44,7 +47,7 @@ class Nihongodera:
     def __del__(self):
         self._driver.quit()
 
-    def analyse(self, text: str) -> Sequence[JapWord]:
+    def analyse(self, text: str, memory: MemoryWords) -> Sequence[JapWord]:
         self._driver.get(f"https://nihongodera.com/tools/text-analyzer")
         assert len(self._driver.page_source) != 0, "Page get failed. Decoding Error?"
         # self._input_field = self._driver.find_element_by_xpath("//textarea[contains(@class, 'lmt__source_textarea')]")
@@ -77,9 +80,16 @@ class Nihongodera:
             # ret["type"] = content[p1 + len(tag):p2]
             # ret["desc"] = content[p2 + len(tag):]
             word = JapWord(element.text, content[0:p1], content[p2 + len(tag):], content[p1 + len(tag):p2])
+
             # print(word.jap()," d: ", len(word.description())," hira ",len(word.hiragana()), " tt ",word.word_type() )
             # ignore lookup fails
             if len(word.description()) > 0:
+                if memory.skip_word(word.jap()):
+                    continue
+                else:
+                    short_text  =word.description().replace("\n","")
+                    memory.learn_word(f"# {short_text}")
+                    memory.learn_word(word.jap())
                 results_of_text.append(word)
         self._driver.implicitly_wait(2)
         # print(results_of_text)

@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 Kitsune_out
 # C extensions
+memory/
 *.so
 out/
 # Distribution / packaging
