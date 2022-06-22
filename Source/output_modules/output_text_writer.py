@@ -59,6 +59,7 @@ def create_text_output(sentences: Sequence[Tuple[str, Sequence[JapWord]]], args,
         references = linking[link][0]
         # skip words
         if entry.skip:
+            print("skip entry: ",entry.jap(), " ",entry.hiragana())
             continue
 
         if entry.jap() != entry.hiragana():

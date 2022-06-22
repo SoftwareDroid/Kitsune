@@ -15,9 +15,11 @@ class MemoryWords:
         try:
             file1 = open(file, 'r')
         except OSError as e:
+            print("Memory file not found")
             return
 
         for line in file1.readlines():
+            line = line[:-1]
             # comment
             if line.startswith("#"):
                 continue
@@ -25,6 +27,7 @@ class MemoryWords:
                 self._never_skip_words.add(line)
             else:
                 self._skip_words.add(line)
+        print("skip words: ",self._skip_words)
 
     def __del__(self):
         if self._file is None or not self._write:
@@ -41,5 +44,5 @@ class MemoryWords:
         return word in self._skip_words
 
     def learn_word(self, word):
-        if word not in self._never_skip_words:
+        if word not in self._never_skip_words and word not in self._skip_words:
             self._learned_words.append(word)

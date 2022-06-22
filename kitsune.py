@@ -51,14 +51,14 @@ def main():
     memory: MemoryWords = MemoryWords(args.memory_file, args.write_memory)
 
     all_subs = read_subs_file(args.subtitles_file)
-    all_subs = all_subs[args.start_by:min(len(all_subs), args.end_by)]
+    last_line = min(len(all_subs), args.end_by)
+    all_subs = all_subs[args.start_by:last_line]
     os.makedirs(args.out_folder, exist_ok=True)
     chunk_counter = 0
     # first links start with first line
     link_counter = args.start_by
     tool = Nihongodera()
     for sentences in chunks(all_subs, args.max_lines):
-        chunk_counter += 1
         analysed = []
         for sentence in sentences:
             # print("Lookup")
@@ -71,8 +71,8 @@ def main():
         folder = args.out_folder
         mode = "txt"
         base_name = pathlib.Path(args.subtitles_file).name.split(".")[0]
-        file1 = f"practice_sheet_s_{args.start_by}_n_{chunk_counter}_cs_{args.max_lines}__" + base_name
-        file2 = f"helper_sheets_s_{args.start_by}_n_{chunk_counter}_cs_{args.max_lines}__" + base_name
+        file1 = f"practice_sheet_{args.start_by}_{chunk_counter}_{last_line}__" + base_name
+        file2 = f"helper_sheets_{args.start_by}_{chunk_counter}_{last_line}__" + base_name
         text_file = open(f"{folder}/{file1}.{mode}", "w")
         text_file.write(practice_sheet)
         text_file.close()
@@ -80,6 +80,7 @@ def main():
         text_file = open(f"{folder}/{file2}.{mode}", "w")
         text_file.write(cheat_sheet)
         text_file.close()
+        chunk_counter += 1
 
 
 if __name__ == '__main__':
