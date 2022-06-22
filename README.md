@@ -13,6 +13,16 @@ Source for downloading Japanese anime subtitles:
 Used website to create furigana, spaces and look up the individual words:
 - https://nihongodera.com/tools/text-analyzer
 
+## install on ubuntu
+Install enviroment
+- pipenv install
+
+Get path append /bin/python
+- pipenv --venv
+
+add alias command in ~/.bashrc (example)
+- alias kitsune="/home/patrick/.local/share/virtualenvs/Kitsune-SsaQwH_U/bin/python /home/patrick/projects/Kitsune/kitsune.py"
+
 ## Example Output
 
 ### File Sentences
